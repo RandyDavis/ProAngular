@@ -29,6 +29,7 @@
       <tbody>
         <tr ng-repeat="item in todo.items">
           <td>{{ item.action }}</td>
+          <td><input type="checkbox" ng-model="item.done"></td>
           <td>{{ item.done }}</td>
         </tr>
       </tbody>
