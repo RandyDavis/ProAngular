@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in todo.items">
+        <tr ng-repeat="item in todo.items | filter:{ done: false } | orderBy: 'action'">
           <td>{{ item.action }}</td>
           <td><input type="checkbox" ng-model="item.done"></td>
         </tr>
