@@ -28,9 +28,19 @@
   var myApp = angular.module("demo", []);
 
   myApp.controller('DemoCtrl', ['$scope', '$http', function ($scope, $http) {
-    var promise = $http.get("todo.json");
-    promise.success(function(data) {
-      $scope.todos = data;
+    // Simple Promise to return data
+    // var promise = $http.get("todo.json");
+    // promise.success(function(data) {
+    //   $scope.todos = data;
+    // });
+
+    // Chaining Promises
+    $http.get("todo.json").then(function(response) {
+      $scope.todos = response.data;
+    }, function() {
+      $scope.todos = [{ action: "Error" }];
+    }).then(function() {
+      $scope.todos.push({ action: "Request Complete" });
     });
   }]);
 
