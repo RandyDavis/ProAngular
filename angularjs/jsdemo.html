@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="demo">
 <head>
   <meta charset="UTF-8">
   <title>JS Demo</title>
@@ -7,8 +7,38 @@
   <link rel="stylesheet" href="css/bootstrap-theme.css">
   <script src="js/angular.js"></script>
 </head>
-<body>
+<body ng-controller="DemoCtrl">
 
+<!-- ANGULAR APP JSDEMO.HTML CONTENT -->
+  <div class="panel">
+    <h1>To Do</h1>
+    <table class="table">
+      <tr>
+        <td>Action</td>
+        <td>Done</td>
+      </tr>
+      <tr ng-repeat="item in todos">
+        <td>{{ item.action }}</td>
+        <td>{{ item.done }}</td>
+      </tr>
+    </table>
+  </div>
+
+<script>
+  var myApp = angular.module("demo", []);
+
+  myApp.controller('DemoCtrl', ['$scope', '$http', function ($scope, $http) {
+    var promise = $http.get("todo.json");
+    promise.success(function(data) {
+      $scope.todos = data;
+    });
+  }]);
+
+</script>
+
+
+
+<!-- ORIGINAL JSDEMO.HTML CONTENT
   <h1>This is a simple example, check the console.</h1>  
   
   <script>
@@ -47,24 +77,8 @@
 
     delete myData.dayOfWeek;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </script>
-
+ -->
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
