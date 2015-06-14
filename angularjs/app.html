@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sportsStore">
+<head>
+  <meta charset="UTF-8">
+  <title>SportsStore</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <script src="js/angular.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+  <div class="navbar navbar-inverse">
+    <a href="#" class="navbar-brand">SPORTS STORE</a>
+  </div>
+  <div class="panel panel-default row">
+    <div class="col-xs-3">Categories go here</div>
+    <div class="col-xs-8">Products go here</div>
+  </div>
+
+  
+  <script>
+    angular.module('sportsStore', []);
+  </script>
+  <script src="controllers/sportsStore.js"></script>
+
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
