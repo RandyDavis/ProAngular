@@ -11,7 +11,13 @@
   <div class="navbar navbar-inverse">
     <a href="#" class="navbar-brand">SPORTS STORE</a>
   </div>
-  <div class="panel panel-default row" ng-controller="productListCtrl">
+
+  <div class="alert alert-danger" ng-show="data.error">
+    Error ({{ data.error.status }}). The product was not loaded. 
+    <a href="/app.html" class="alert-link">Click here to try again</a>
+  </div>
+
+  <div class="panel panel-default row" ng-controller="productListCtrl" ng-hide="data.error">
     <div class="col-xs-3">
       <a class="btn btn-block btn-default btn-lg" ng-click="selectCategory()">Home</a>
       <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'" class="btn btn-block btn-default btn-lg" ng-click="selectCategory(item)" ng-class="getCategoryClass(item)">{{ item }}</a>
