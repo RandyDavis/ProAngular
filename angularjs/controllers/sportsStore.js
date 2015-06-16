@@ -3,9 +3,9 @@ angular.module("sportsStore")
   .constant('dataUrl', "https://api.parse.com/1/classes/Products")
   .run(function($http) {
     $http.defaults.headers.common["X-Parse-Application-Id"]
-      = "";
+      = "Ha2eXBEXMvjW06am7mYHP1hf3yLWCDfT6ZaHp00E";
     $http.defaults.headers.common["X-Parse-REST-API-Key"]
-      = "";
+      = "9mZ4uPmBt5gyItlqthpBPafD5bHaMzHIGZpDne3p";
   })
 
   .controller("sportsStoreCtrl", ["$scope", "$http", "dataUrl", function($scope, $http, dataUrl) {
