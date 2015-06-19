@@ -18,16 +18,32 @@
     <a href="/app.html" class="alert-link">Click here to try again</a>
   </div>
 
-  <ng-include src="'views/productList.html'"></ng-include>
+  <ng-view />
 
   
   <script>
-    angular.module('sportsStore', ["customFilters", "cart"]);
+    angular.module('sportsStore', ["customFilters", "cart", "ngRoute"]);
+      .config(function($routeProvider) {
+
+        $routeProvider.when("/checkout", {
+          templateUrl: "/views/checkoutSummary.html"
+        });
+
+        $routeProvider.when("/products", {
+          templateUrl: "/views/productList.html"
+        });
+
+        $routeProvider.otherwise({
+          templateUrl: "/views/productList.html"
+        });
+
+      })
   </script>
   <script src="controllers/sportsStore.js"></script>
   <script src="filters/customFilters.js"></script>
   <script src="controllers/productListControllers.js"></script>
   <script src="components/cart/cart.js"></script>
+  <script src="ngmodules/angular-route.js"></script>
 
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
