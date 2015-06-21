@@ -1,4 +1,4 @@
-angular.module("sportsStore", [])
+angular.module("sportsStore")
   .controller("cartSummaryController", ["$scope", "cart", function($scope, cart) {
 
     $scope.cartData = cart.getProducts();
