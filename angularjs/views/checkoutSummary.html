@@ -17,10 +17,10 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in cartData">
-          <td>{{ item.count }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.price | currency }}</td>
-          <td>{{ (item.price * item.count) | currency }}</td>
+          <td class="text-center">{{ item.count }}</td>
+          <td class="text-left">{{ item.name }}</td>
+          <td class="text-right">{{ item.price | currency }}</td>
+          <td class="text-right">{{ (item.price * item.count) | currency }}</td>
           <td>
             <button ng-click="remove(item.objectId)" class="btn btn-sm btn-warning">Remove</button>
           </td>
