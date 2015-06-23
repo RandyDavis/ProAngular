@@ -31,6 +31,6 @@ angular.module("sportsStore")
 
     $scope.addProductToCart = function(product) {
       cart.addProduct(product.objectId, product.name, product.price);
-    }
+    };
 
   }]);
