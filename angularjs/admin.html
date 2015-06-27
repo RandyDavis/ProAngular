@@ -5,6 +5,7 @@
   <title>Administration</title>
   <script src="js/angular.js"></script>
   <script src="ngmodules/angular-route.js"></script>
+  <script src="ngmodules/angular-resource.js"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
 </head>
@@ -15,7 +16,7 @@
 
 
   <script>
-    angular.module("sportsStoreAdmin", ["ngRoute"])
+    angular.module("sportsStoreAdmin", ["ngRoute", "ngResource"])
       .config(function($routeProvider) {
 
         $routeProvider.when("/login", {
@@ -32,6 +33,7 @@
       });
   </script>
   <script src="controllers/adminControllers.js"></script>
+  <script src="controllers/adminProductController.js"></script>
 
 
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
