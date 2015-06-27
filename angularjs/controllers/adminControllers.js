@@ -1,5 +1,6 @@
 angular.module("sportsStoreAdmin")
   .constant("authUrl", "https://api.parse.com/1/login")
+  .constant("ordersUrl", "https://api.parse.com/1/classes/Orders")
   .run(function($http) {
     $http.defaults.headers.common["X-Parse-Application-Id"]
       = "Ha2eXBEXMvjW06am7mYHP1hf3yLWCDfT6ZaHp00E";
@@ -38,6 +39,31 @@ angular.module("sportsStoreAdmin")
   $scope.getScreen = function() {
     return $scope.current == "Products" ? "/views/adminProducts.html" : "/views/adminOrders.html";
   };
+}])
+
+.controller("ordersCtrl", ["$scope", "$http", "ordersUrl", function($scope, $http, ordersUrl) {
+
+  $http.get(ordersUrl) 
+    .success(function(data) {
+      $scope.orders = data.results;
+    })
+    .error(function(response) {
+      $scope.error = response.error || response;
+    });
+
+  $scope.selectedOrder;
+
+  $scope.selectOrder = function(order) {
+    $scope.selectedOrder = order;
+  };
+
+  $scope.calcTotal = function(order) {
+    var total = 0;
+    for(var i = 0; i < order.products.length; i++) {
+      total += order.products[i].count * order.products[i].price;
+    }
+    return total;
+  }
 }]);
 
 
