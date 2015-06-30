@@ -13,6 +13,7 @@
       <h3>AngularJS App</h3>
     </div>
     <h4>Today is {{ day || "(unknown)" }}</h4>
+    <h4 ng-controller="tomorrowCtrl">Tomorrow is {{ tomorrow || "(unknown)"}}</h4>
   </div>
 
 
@@ -20,7 +21,14 @@
     var myApp = angular.module("exampleApp", []);
 
     myApp.controller("dayCtrl", ["$scope", function($scope) {
-      // controller statements here
+      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      $scope.day = dayNames[new Date().getDay()];
+      $scope.tomorrow = dayNames[(new Date().getDay() + 1) % 7];
+    }]);
+
+    myApp.controller("tomorrowCtrl", ["$scope", function($scope) {
+      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      $scope.day = dayNames[new Date().getDay()];
     }])
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
