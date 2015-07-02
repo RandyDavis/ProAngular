@@ -12,8 +12,8 @@
     <div class="page-header">
       <h3>AngularJS App</h3>
     </div>
-    <h4 ng-controller="dayCtrl" highlight="Tuesday">Today is {{ day || "(unknown)" }}</h4>
-    <h4 ng-controller="tomorrowCtrl">Tomorrow is {{ tomorrow || "(unknown)"}}</h4>
+    <h4 ng-controller="dayCtrl" highlight="Wednesday">Today is {{ day || "(unknown)" | dayName }}</h4>
+    <h4 ng-controller="tomorrowCtrl">Tomorrow is {{ tomorrow || "(unknown)" | dayName}}</h4>
   </div>
 
 
@@ -37,6 +37,13 @@
           element.css("color", "red");
         }
       }
+    });
+
+    myApp.filter("dayName", function() {
+      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return function(input) {
+        return angular.isNumber(input) ? dayNames[input] : input;
+      };
     });
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
