@@ -22,6 +22,14 @@
   <script>
     var myApp = angular.module("exampleApp", ["exampleApp.Controllers", "exampleApp.Filters", "exampleApp.Services", "exampleApp.Directives"]);
 
+    myApp.constant("startTime", new Date().toLocaleTimeString());
+    myApp.config(['startTime', function (startTime) {
+      console.log("Main module config: " + startTime);
+    }]);
+    myApp.run(function(startTime) {
+      console.log("Main module run: " + startTime);
+    })
+
     angular.module('exampleApp.Directives', [])
       .directive("highlight", function($filter) {
         var dayFilter = $filter("dayName");
@@ -40,7 +48,13 @@
       .service("days", function(nowValue) {
         this.today = nowValue.getDay();
         this.tomorrow = this.today + 1;
-      });
+      })
+     .config(function() {
+      console.log("Services module config: (no time)");
+     })
+     .run(function(startTime) {
+      console.log("Services module run: " + startTime);
+     })
 
     // Commented out to show module filters and DI on pg 226
     // myApp.controller("dayCtrl", ["$scope", "days", function($scope, days) {
