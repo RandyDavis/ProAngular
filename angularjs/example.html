@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
   <script src="js/angular.js"></script>
+  <script src="controllers.js"></script>
+  <script src="filters.js"></script>
 </head>
 <body>
   <div class="panel">
@@ -18,48 +20,69 @@
 
 
   <script>
-    var myApp = angular.module("exampleApp", []);
+    var myApp = angular.module("exampleApp", ["exampleApp.Controllers", "exampleApp.Filters", "exampleApp.Services", "exampleApp.Directives"]);
 
-    myApp.controller("dayCtrl", ["$scope", "days", function($scope, days) {
-      // Commented out for 9-12 services example
-      // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      // $scope.day = new Date().getDay();
-      $scope.day = days.today;
-    }]);
+    angular.module('exampleApp.Directives', [])
+      .directive("highlight", function($filter) {
+        var dayFilter = $filter("dayName");
 
-    myApp.controller("tomorrowCtrl", ["$scope", "days", function($scope, days) {
-      // Commented out for 9-12 services example
-      // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      // $scope.day = dayNames[new Date().getDay()];
-      // $scope.tomorrow = new Date().getDay() + 1;
-      $scope.tomorrow = days.tomorrow;
-    }]);
-
-    myApp.directive("highlight", function($filter) {
-
-      var dayFilter = $filter("dayName");
-
-      return function(scope, element, attrs) {
-        if (dayFilter(scope.day) == attrs["highlight"]) {
-          element.css("color", "red");
+        return function(scope, element, attrs){
+          if (dayFilter(scope.day) == attrs["highlight"]) {
+            element.css("color","red");
+          }
         }
-      }
-    });
-
-    myApp.filter("dayName", function() {
-      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      return function(input) {
-        return angular.isNumber(input) ? dayNames[input] : input;
-      };
-    });
+      });
 
     var now = new Date();
     myApp.value("nowValue", now);
 
-    myApp.service("days", function(nowValue) {
-      this.today = nowValue.getDay();
-      this.tomorrow = this.today + 1;
-    })
+    angular.module("exampleApp.Services", [])
+      .service("days", function(nowValue) {
+        this.today = nowValue.getDay();
+        this.tomorrow = this.today + 1;
+      });
+
+    // Commented out to show module filters and DI on pg 226
+    // myApp.controller("dayCtrl", ["$scope", "days", function($scope, days) {
+    //   // Commented out for 9-12 services example
+    //   // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    //   // $scope.day = new Date().getDay();
+    //   $scope.day = days.today;
+    // }]);
+
+    // myApp.controller("tomorrowCtrl", ["$scope", "days", function($scope, days) {
+    //   // Commented out for 9-12 services example
+    //   // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    //   // $scope.day = dayNames[new Date().getDay()];
+    //   // $scope.tomorrow = new Date().getDay() + 1;
+    //   $scope.tomorrow = days.tomorrow;
+    // }]);
+
+    // myApp.directive("highlight", function($filter) {
+
+    //   var dayFilter = $filter("dayName");
+
+    //   return function(scope, element, attrs) {
+    //     if (dayFilter(scope.day) == attrs["highlight"]) {
+    //       element.css("color", "red");
+    //     }
+    //   }
+    // });
+
+    // myApp.filter("dayName", function() {
+    //   var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    //   return function(input) {
+    //     return angular.isNumber(input) ? dayNames[input] : input;
+    //   };
+    // });
+
+    // var now = new Date();
+    // myApp.value("nowValue", now);
+
+    // myApp.service("days", function(nowValue) {
+    //   this.today = nowValue.getDay();
+    //   this.tomorrow = this.today + 1;
+    // })
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
