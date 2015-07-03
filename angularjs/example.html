@@ -20,15 +20,19 @@
   <script>
     var myApp = angular.module("exampleApp", []);
 
-    myApp.controller("dayCtrl", ["$scope", function($scope) {
-      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      $scope.day = new Date().getDay();
+    myApp.controller("dayCtrl", ["$scope", "days", function($scope, days) {
+      // Commented out for 9-12 services example
+      // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      // $scope.day = new Date().getDay();
+      $scope.day = days.today;
     }]);
 
-    myApp.controller("tomorrowCtrl", ["$scope", function($scope) {
-      var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      $scope.day = dayNames[new Date().getDay()];
-      $scope.tomorrow = new Date().getDay() + 1;
+    myApp.controller("tomorrowCtrl", ["$scope", "days", function($scope, days) {
+      // Commented out for 9-12 services example
+      // var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      // $scope.day = dayNames[new Date().getDay()];
+      // $scope.tomorrow = new Date().getDay() + 1;
+      $scope.tomorrow = days.tomorrow;
     }]);
 
     myApp.directive("highlight", function($filter) {
@@ -48,6 +52,11 @@
         return angular.isNumber(input) ? dayNames[input] : input;
       };
     });
+
+    myApp.service("days", function() {
+      this.today = new Date().getDay();
+      this.tomorrow = this.today + 1;
+    })
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
