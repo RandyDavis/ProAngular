@@ -53,8 +53,11 @@
       };
     });
 
-    myApp.service("days", function() {
-      this.today = new Date().getDay();
+    var now = new Date();
+    myApp.value("nowValue", now);
+
+    myApp.service("days", function(nowValue) {
+      this.today = nowValue.getDay();
       this.tomorrow = this.today + 1;
     })
   </script>
