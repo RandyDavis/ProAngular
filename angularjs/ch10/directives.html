@@ -10,10 +10,14 @@
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
     <h3 class="panel-header">To Do List</h3>
-    <div>There are {{ todos.length }} items</div>
-    <div>There are <span ng-bind="todos.length"></span> items</div>
-    <div ng-bind-template="First: {{todos[0].action}}.  Second: {{todos[1].action}}"></div>
-    <div ng-non-bindable="">AngularJS uses {{ and }} characters for templates</div>
+    <div class="well">
+      <div>The first item is: {{ todos[0].action}}</div>
+    </div>
+
+    <div class="form-group-well">
+      <label for="firstItem">Set First Item:</label>
+    </div>
+    <input type="text" name="firstItem" class="form-control" ng-model="todos[0].action">
   </div>
   <script>
     angular.module("exampleApp", [])
