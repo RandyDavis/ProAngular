@@ -20,8 +20,15 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in todos">
-          <td>{{ item.action }}</td>
-          <td>{{ item.complete }}</td>
+          <!-- Receiving a Key and a Data Value -->
+          <td ng-repeat="(key, value) in item">{{ key }} = {{ value }}</td>
+
+          <!-- Nesting and Repeating Object Properties -->
+          <!-- <td ng-repeat="prop in item">{{ prop }}</td> -->
+
+          <!-- Normal -->
+          <!-- <td>{{ item.action }}</td>
+          <td>{{ item.complete }}</td> -->
         </tr>
       </tbody>
     </table>
