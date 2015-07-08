@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/bootstrap-theme.css">
   <script src="../js/angular.js"></script>
+  <style>
+    .odd {
+      background-color: lightcoral;
+    }
+    .even {
+      background-color: lavenderblush;
+    }
+  </style>
 </head>
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
@@ -20,7 +28,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in todos">
+        <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'"> <!-- Creating a Striped Table 10-8 -->
+          
           <!-- Using Built-in Variables -->
           <td>{{ $index + 1 }}</td>
           <td ng-repeat="prop in item">{{ prop }}</td>
