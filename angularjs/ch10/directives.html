@@ -29,10 +29,15 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'"> <!-- Creating a Striped Table 10-8 -->
-          
-          <!-- Using Built-in Variables -->
+            
+          <!-- ng-if 10-9 -->
           <td>{{ $index + 1 }}</td>
-          <td ng-repeat="prop in item">{{ prop }}</td>
+          <td>{{ item.action }}</td>
+          <td><span ng-if="$first || $last">{{ item.complete }}</span></td>
+
+          <!-- Using Built-in Variables -->
+          <!-- <td>{{ $index + 1 }}</td>
+          <td ng-repeat="prop in item">{{ prop }}</td> -->
 
 
           <!-- Receiving a Key and a Data Value -->
