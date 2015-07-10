@@ -18,8 +18,9 @@
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
     <h3 class="panel-header">To Do List</h3>
-
-    <table class="table">
+    <ng-include src="'table.html'"></ng-include>
+<!-- Commented out for Partial Views Example Start -->
+    <!-- <table class="table">
       <thead>
         <tr>
           <th>#</th>
@@ -38,7 +39,7 @@
         </tr>
         <tr ng-repeat-end>
           <td>Item {{ $index }} is {{ $item.complete? '' : "not" }} complete</td>
-        </tr>
+        </tr> -->
         <!-- <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'"> --> <!-- Creating a Striped Table 10-8 -->
             
           <!-- ng-if 10-9 -->
@@ -63,8 +64,10 @@
           <!-- <td>{{ item.action }}</td>
           <td>{{ item.complete }}</td> -->
         <!-- </tr> -->
-      </tbody>
-    </table>
+     <!--  </tbody>
+    </table> -->
+<!-- Commented out for Partial Views Example End -->
+
 
     <!-- Data Binding -->
     <!-- <div class="well">
