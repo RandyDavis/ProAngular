@@ -18,7 +18,17 @@
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
     <h3 class="panel-header">To Do List</h3>
-    <ng-include src="'table.html'"></ng-include>
+    <!-- Listing 10-14 -->
+    <div class="well">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="showList">
+          Use the list view
+        </label>
+      </div>
+    </div>
+    <ng-include src="viewFile()"></ng-include>
+    <!-- <ng-include src="'table.html'"></ng-include> -->
 <!-- Commented out for Partial Views Example Start -->
     <!-- <table class="table">
       <thead>
@@ -89,6 +99,10 @@
           { action: "Buy flowers", complete: false },
           { action: "Call family", complete: false }
         ];
+
+        $scope.viewFile = function() {
+          return $scope.showList ? "list.html" : "table.html";
+        };
       }]);
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
