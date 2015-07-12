@@ -27,7 +27,8 @@
         </label>
       </div>
     </div>
-    <ng-include src="viewFile()"></ng-include>
+    <ng-include src="viewFile()" onload="reportChange()"></ng-include>
+    <!-- End Listing 10-14 -->
     <!-- <ng-include src="'table.html'"></ng-include> -->
 <!-- Commented out for Partial Views Example Start -->
     <!-- <table class="table">
@@ -103,6 +104,10 @@
         $scope.viewFile = function() {
           return $scope.showList ? "list.html" : "table.html";
         };
+
+        $scope.reportChange = function() {
+          console.log("Displayed content: " + $scope.viewFile());
+        }
       }]);
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
