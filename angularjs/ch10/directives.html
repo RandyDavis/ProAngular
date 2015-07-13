@@ -38,13 +38,20 @@
               <th>Done</th>
             </tr>
           </thead>
-          <tr ng-repeat="item in todos" ng-class="1odd ? 'odd' : 'even'">
-            <td>{{$index + 1}}</td>
-            <td ng-repeat="prop in item">{{prop}}</td>
+          <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'">
+            <td>{{ $index + 1 }}</td>
+            <td ng-repeat="prop in item">{{ prop }}</td>
           </tr>
         </table>
       </div>
+      <div ng-switch-when="List">
+        <ol>
+          <li ng-repeat="item in todos">{{ item.action }}<span ng-if="item.complete"> (Done) </li>
+        </ol>
+      </div>
+      <div ng-switch-default>Select another option to display a layout</div>
     </div>
+
 
 
     <!-- Listing 10-14 -->
