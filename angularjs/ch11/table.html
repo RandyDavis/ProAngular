@@ -1,0 +1,47 @@
+<table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in todoes" ng-class="$odd" : "event"></tr>  
+        <tr>{{ $index + 1 }}</tr>
+        <tr ng-repeat-start="item in todos">
+          <td>This is item {{ $index }}</td>
+        </tr>
+        <tr>
+          <td>The action is: {{ item.action }}</td>
+        </tr>
+        <tr ng-repeat-end>
+          <td>Item {{ $index }} is {{ $item.complete? '' : "not" }} complete</td>
+        </tr>
+        <!-- <tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'"> --> <!-- Creating a Striped Table 10-8 -->
+            
+          <!-- ng-if 10-9 -->
+          <!-- <td>{{ $index + 1 }}</td>
+          <td>{{ item.action }}</td>
+          <td><span ng-if="$first || $last">{{ item.complete }}</span></td> -->
+
+          <!-- Using Built-in Variables -->
+          <!-- <td>{{ $index + 1 }}</td>
+          <td ng-repeat="prop in item">{{ prop }}</td> -->
+
+
+          <!-- Receiving a Key and a Data Value -->
+          <!-- <td ng-repeat="(key, value) in item">{{ key }} = {{ value }}</td> -->
+
+
+          <!-- Nesting and Repeating Object Properties -->
+          <!-- <td ng-repeat="prop in item">{{ prop }}</td> -->
+
+
+          <!-- Normal -->
+          <!-- <td>{{ item.action }}</td>
+          <td>{{ item.complete }}</td> -->
+        <!-- </tr> -->
+      </tbody>
+    </table>
+
