@@ -15,7 +15,7 @@
     <h3 class="panel-header">To Do List</h3>
     <div class="checkbox well">
       <label>
-        <input type="text" ng-model="todos[2].complete">
+        <input type="checkbox" ng-model="todos[2].complete">
         Item 3 is complete
       </label>
     </div>
@@ -32,8 +32,8 @@
         <td>{{ $index + 1 }}</td>
         <td>{{ item.action }}</td>
         <td>
-          <span ng-hide="item.complete"(Incomplete)</span> 
-          <span ng-show="item.complete"(Done)</span> 
+          <span ng-hide="item.complete">(Incomplete)</span> 
+          <span ng-show="item.complete">(Done)</span> 
         </td>
       </tr>
     </table>
