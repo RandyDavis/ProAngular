@@ -8,17 +8,30 @@
   <script src="../js/angular.js"></script>
   <style>
     td > *:first-child { font-weight: bold }
+    tr.Red { background-color: lightcoral; }
+    tr.Green { background-color: lightgreen; }
+    tr.Blue { background-color: lightblue; }
   </style>
 </head>
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
     <h3 class="panel-header">To Do List</h3>
-    <div class="checkbox well">
+    <div class="row well">
+      <div class="col-xs-6" ng-repeat="(key, val) in settings">
+        <h4>{{key}}</h4>
+        <div class="radio" ng-repeat="button in buttonNames">
+          <label>
+            <input type="radio" ng-model="settings[key]" value="{{button}}">{{button}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="checkbox well">
       <label>
         <input type="checkbox" ng-model="todos[2].complete">
         Item 3 is complete
       </label>
-    </div>
+    </div> -->
 
     <table class="table">
       <thead>
@@ -28,13 +41,17 @@
           <th>Done</th>
         </tr>
       </thead>
-      <tr ng-repeat="item in todos">
+      <tr ng-repeat="item in todos" ng-class="settings.Rows">
+        
+      <!-- <tr ng-repeat="item in todos | filter: {complete: 'false'}"> -->
         <td>{{ $index + 1 }}</td>
         <td>{{ item.action }}</td>
-        <td>
-          <span ng-if="!item.complete">(Incomplete)</span> 
-          <span ng-if="item.complete">(Done)</span> 
+        <td ng-style="{'background-color': settings.Columns}">
+          {{item.complete}}
+          <!-- <span ng-if="!item.complete">false</span> 
+          <span ng-if="item.complete">true</span> --> 
         </td>
+      </tr>
       </tr>
     </table>
   </div>
@@ -48,6 +65,13 @@
           { action: "Buy flowers", complete: false },
           { action: "Call family", complete: false }
         ];
+
+        $scope.buttonNames = ["Red", "Green", "Blue"];
+
+        $scope.settings = {
+          Rows: "Red",
+          Columns: "Green"
+        };
       }]);
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
