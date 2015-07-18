@@ -41,7 +41,7 @@
           <th>Done</th>
         </tr>
       </thead>
-      <tr ng-repeat="item in todos" ng-class="settings.Rows">
+      <tr ng-repeat="item in todos" ng-class-even="settings.Rows" ng-class-odd="settings.Columns">
         
       <!-- <tr ng-repeat="item in todos | filter: {complete: 'false'}"> -->
         <td>{{ $index + 1 }}</td>
