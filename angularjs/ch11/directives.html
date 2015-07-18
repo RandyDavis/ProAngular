@@ -16,7 +16,8 @@
 <body>
   <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
     <h3 class="panel-header">To Do List</h3>
-    <div class="row well">
+    <!-- 11-7 -->
+    <!-- <div class="row well">
       <div class="col-xs-6" ng-repeat="(key, val) in settings">
         <h4>{{key}}</h4>
         <div class="radio" ng-repeat="button in buttonNames">
@@ -25,14 +26,20 @@
           </label>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div class="checkbox well">
       <label>
         <input type="checkbox" ng-model="todos[2].complete">
         Item 3 is complete
       </label>
     </div> -->
-
+    <div class="well">
+      <span ng-repeat="button in buttonNames">
+        <button class="btn btn-info" ng-click="data.rowColor=button">
+          {{button}}
+        </button>
+      </span>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -41,12 +48,14 @@
           <th>Done</th>
         </tr>
       </thead>
-      <tr ng-repeat="item in todos" ng-class-even="settings.Rows" ng-class-odd="settings.Columns">
+      <tr ng-repeat="item in todos" ng-class="data.rowColor" 
+        ng-mouseenter="handleEvent($event)"
+        ng-mouseleave="handleEvent($event)">
         
       <!-- <tr ng-repeat="item in todos | filter: {complete: 'false'}"> -->
         <td>{{ $index + 1 }}</td>
         <td>{{ item.action }}</td>
-        <td ng-style="{'background-color': settings.Columns}">
+        <td ng-class="data.columnColor">
           {{item.complete}}
           <!-- <span ng-if="!item.complete">false</span> 
           <span ng-if="item.complete">true</span> --> 
@@ -67,11 +76,22 @@
         ];
 
         $scope.buttonNames = ["Red", "Green", "Blue"];
+        // $scope.settings = {
+        //   Rows: "Red",
+        //   Columns: "Green"
+        // };
 
-        $scope.settings = {
-          Rows: "Red",
-          Columns: "Green"
+        // 11-8
+        $scope.data = {
+          rowColor: "Blue",
+          columnColor: "Green"
         };
+
+        $scope.handleEvent = function(e) {
+          console.log("Event type: " + e.type);
+          $scope.data.columnColor = e.type == "mouseover" ? "Green" : "Blue";
+        }
+
       }]);
   </script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
