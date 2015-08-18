@@ -2,7 +2,7 @@
 <html lang="en" ng-app="exampleApp">
 <head>
 	<meta charset="UTF-8">
-	<title>Forms</title>
+	<title>Forms 12-2</title>
 	<link rel="stylesheet" href="../css/bootstrap.css">
   	<link rel="stylesheet" href="../css/bootstrap-theme.css">
   	<script src="../js/angular.js"></script>
@@ -27,17 +27,13 @@
 			<tr ng-repeat="item in todos">
 				<td>{{$index + 1}}</td>
 				<td>{{item.action}}</td>
-				<td>{{item.complete}}</td>
+				<td> <!-- 12-2 -->
+					<input type="checkbox" ng-model="item.complete">
+				</td> <!-- 12-2 End-->
 			</tr>
 		</table>
 	</div>
 
-
-
-
-
-
-	
 	
 	<script>
 		angular.module("exampleApp", [])
@@ -49,6 +45,7 @@
 					{ action: "Buy flowers", complete: false },
 					{ action: "Call family", complete: false }
 				];
+
 			}]);
 	</script>
 	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
