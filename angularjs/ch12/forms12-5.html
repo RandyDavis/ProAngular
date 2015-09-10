@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms 12-5</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body>
+<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+    <h3 class="panel-header">
+        To Do List
+			<span class="label label-info">
+				{{(todos |  filter: {complete: 'false'}).length}}
+			</span>
+    </h3>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="well">
+                <div class="form-group row">
+                    <label for="actionText">Action:</label>
+                    <input type="text" id="actionText" class="form-control" ng-model="newTodo.action">
+                </div>
+                <div class="form-group row">
+                    <label for="actionLocation">Location:</label>
+                    <select name="" id="actionLocation" class="form-control" ng-model="newTodo.location">
+                        <option>Home</option>
+                        <option>Office</option>
+                        <option>Mall</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block" ng-click="addNewItem(newTodo)">
+                    Add
+                </button>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Acttion</th>
+                    <th>Done</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="item in todos">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.action}}</td>
+                    <td> <!-- 12-2 -->
+                        <input type="checkbox" ng-model="item.complete">
+                    </td> <!-- 12-2 End-->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    angular.module("exampleApp", [])
+            .controller('defaultCtrl', ['$scope', function ($scope) {
+                $scope.addUser = function(userDetails) {
+                    $scope.message = userDetails.name + " (" + userDetails.email + ") (" + userDetails.agreed + ")";
+                    $scope.message = "Ready";
+                }
+            }]);
+</script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
