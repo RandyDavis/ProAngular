@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms 12-13</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body>
+<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+    <form name="myForm" novalidate>
+        <div class="well">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="sample" ng-model="inputValue" ngTrueValue="Hurrah" ngFalseValue="Boo"/>
+                    This is a checkbox
+                </label>
+            </div>
+        </div>
+
+        <div class="well">
+            <p>Model Value: {{inputValue}}</p>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    angular.module("exampleApp", [])
+            .controller("defaultCtrl", ["$scope", function($scope) {
+            }]);
+</script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
