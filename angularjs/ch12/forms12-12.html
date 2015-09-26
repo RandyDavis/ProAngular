@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms 12-12</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body>
+    <div id="idPanel" class="panel" ng-controller="defaultCtrl">
+        <form name="myForm" novalidate>
+            <div class="well">
+                <div class="form-group">
+                    <label>Text:</label>
+                    <input type="text" name="sample" class="form-control" ng-model="inputValue"
+                           ng-required="requiredValue" ng-minlength="3"
+                           ng-maxlength="10" ng-pattern="matchPattern"/>
+                </div>
+            </div>
+
+            <div class="well">
+                <p>Required Error: {{myForm.sample.$error.required}}</p>
+                <p>Min Length Error: {{myForm.sample.$error.minlength}}</p>
+                <p>Max Length Error: {{myForm.sample.$error.maxlength}}</p>
+                <p>Pattern Error: {{myForm.sample.$error.pattern}}</p>
+                <p>Element Valid: {{myForm.sample.$valid}}</p>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        angular.module("exampleApp", [])
+                .controller("defaultCtrl", ["$scope", function($scope) {
+                    $scope.requireValue = true;
+                    $scope.matchPattern = new RegExp("^[a-z]");
+                }]);
+    </script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
