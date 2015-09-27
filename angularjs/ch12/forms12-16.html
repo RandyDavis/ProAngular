@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms 12-16</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body>
+<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+    <form name="myForm" novalidate>
+        <div class="well">
+            <div class="form-group">
+                <label>Select an Action: </label>
+                <select ng-model="selectValue" ng-options="item.id as item.action for item in todos">
+                    <option value="">(Pick One)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="well">
+            <p>Selected: {{selectValue}}</p>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    //    angular.module("exampleApp", [])
+    //            .controller("defaultCtrl", ["$scope", function($scope) {
+    //                $scope.requireValue = true;
+    //                $scope.matchPattern = new RegExp("^[a-z]");
+    //            }]);
+
+    angular.module("exampleApp", [])
+            .controller("defaultCtrl", ["$scope", function($scope) {
+                $scope.todos = [
+                    { id: 100, action: "Get groceries", complete: false },
+                    { id: 200, action: "Call plumber", complete: false },
+                    { id: 300, action: "Buy running shoes", complete: true }
+                ]
+            }])
+</script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
