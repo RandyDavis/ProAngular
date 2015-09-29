@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 13-4</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-controller="simpleCtrl">
+<div class="well">
+    <label>Select a City:</label>
+    <select ng-options="city for city in cities" ng-model="city"></select>
+</div>
+    <div class="well">
+        <p>The city is: {{city}}</p>
+        <p>The country is: {{getCountry(city) || "Unknown"}}</p>
+    </div>
+
+    <script>
+        angular.module("exampleApp", [])
+                .controller("simpleCtrl", ["$scope", function($scope) {
+                    $scope.cities = ["London", "New York", "Paris"];
+                    $scope.city = "London";
+                    $scope.getCountry = function(city) {
+                        switch (city) {
+                            case "London":
+                                return "UK";
+                            case "New York":
+                                return "USA"
+                        }
+                    }
+                }]);
+
+    </script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
