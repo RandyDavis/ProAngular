@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 13-5</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-controller="simpleCtrl">
+    <div class="well">
+        <h4>Billing Zip Code</h4>
+
+        <div class="form-group">
+            <input class="form-control" ng-model="billingZip"/>
+        </div>
+        <button class="btn btn-primary" ng-click="setAddress('billingZip', billingZip)">Save Billing</button>
+    </div>
+
+    <div class="well">
+        <h4>Shipping Zip Code</h4>
+
+        <div class="form-group">
+            <input class="form-control" ng-model="shippingZip"/>
+        </div>
+        <button class="btn btn-primary" ng-click="copyAddress()">Use Billing</button>
+        <button class="btn btn-primary" ng-click="setAddress('shippingZip', shippingZip)">Save Shipping</button>
+    </div>
+
+    <script>
+        angular.module("exampleApp", [])
+                .controller("simpleCtrl", ["$scope", function($scope) {
+                    $scope.addresses = {};
+                    $scope.setAddress = function(type, zip) {
+                        console.log("Type: " + type + " " + zip);
+                        $scope.addresses[type] = zip;
+                    }
+                    $scope.copyAddress = function() {
+                        $scope.shippingZip = $scope.billingZip;
+                    }
+                }]);
+    </script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
