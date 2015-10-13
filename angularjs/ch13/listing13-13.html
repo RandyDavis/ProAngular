@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 13-13</title>
+    <script src="../js/angular.js"></script>
+    <script src="listing13-11-controllers.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+</head>
+<body>
+<div class="well" ng-controller="FirstCtrl">
+    <h4>First Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+            </span>
+        <input class="form-control" ng-model="dataValue"/>
+    </div>
+</div>
+
+<div class="well" ng-controller="SecondCtrl">
+    <h4>Second Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case</button>
+
+            </span>
+        <input class="form-control" ng-model="dataValue"/>
+    </div>
+</div>
+
+<script>
+    var app = angular.module("exampleApp", []);
+
+    app.controller("FirstCtrl", ["$scope", function($scope) {
+        $scope.dataValue = "Hello, Randy";
+
+        $scope.reverseText = function() {
+            $scope.dataValue = $scope.dataValue.split("").reverse().join("");
+        }
+    }]);
+
+    app.controller("SecondCtrl", ["$scope", function($scope) {
+        $scope.dataValue = "Hi, Bob";
+        $scope.changeCase = function () {
+            $scope.dataValue = $scope.dataValue.toUpperCase();
+        };
+    }]);
+</script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
