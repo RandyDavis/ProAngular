@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 13-12</title>
+    <script src="../js/angular.js"></script>
+    <script src="listing13-11-controllers.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+</head>
+<body ng-controller="topLevelCtrl">
+<div class="well">
+    <h4>Top Level Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case</button>
+
+            </span>
+        <input class="form-control" ng-model="data.dataValue"/>
+    </div>
+</div>
+
+<div class="well" ng-controller="firstChildCtrl">
+    <h4>First Child Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case</button>
+
+            </span>
+        <input class="form-control" ng-model="data.dataValue"/>
+    </div>
+</div>
+
+<div class="well" ng-controller="secondChildCtrl">
+    <h4>Second Child Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button" ng-click="changeCase()">Case</button>
+                <button class="btn btn-default" type="button" ng-click="shiftFour()">Shift</button>
+
+            </span>
+        <input class="form-control" ng-model="data.dataValue"/>
+    </div>
+</div>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
