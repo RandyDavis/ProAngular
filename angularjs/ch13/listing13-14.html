@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 13-14</title>
+    <script src="../js/angular.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+</head>
+<body>
+<div class="well" ng-controller="simpleCtrl as ctrl">
+    <h4>Top Level Controller</h4>
+    <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="ctrl.reverseText()">Reverse</button>
+            </span>
+        <input class="form-control" ng-model="ctrl.dataValue"/>
+    </div>
+</div>
+<script>
+    var app = angular.module("exampleApp", [])
+            .controller("simpleCtrl", [function() {
+                this.dataValue = "Hello, Randy";
+
+                this.reverseText = function() {
+                    this.dataValue = this.dataValue.split("").reverse().join("");
+                }
+            }]);
+</script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
