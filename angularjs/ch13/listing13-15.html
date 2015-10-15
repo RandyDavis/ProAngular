@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing13-15</title>
+    <script src="../js/angular.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/sunny/jquery-ui.min.css"/>
+</head>
+<body>
+    <div id="angularRegion" class="well" ng-controller="simpleCtrl">
+        <h4>AngularJS</h4>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="buttonEnabled"/> Enable Button
+            </label>
+        </div>
+        Click Counter: {{clickCounter}}
+    </div>
+    <div id="jqui" class="well">
+        <h4>jQuery UI</h4>
+        <button>Click Me!</button>
+    </div>
+
+<script>
+    $(function() {
+        $('#jqui button').button().click(function (e) {
+            alert("jQuery UI Button was clicked");
+        });
+    });
+
+    var app = angular.module("exampleApp", [])
+            .controller("simpleCtrl", ["$scope", function($scope) {
+                $scope.buttonEnabled = true;
+                $scope.clickCounter = 0;
+
+                $scope.handleClick = function() {
+                    $scope.clickCounter++;
+                }
+            }]);
+</script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+</html>
