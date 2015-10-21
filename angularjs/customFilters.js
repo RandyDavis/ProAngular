@@ -28,4 +28,12 @@ angular.module("exampleApp")
                 return data;
             }
         }
-    });
+    })
+
+    // add "take" filter for listing14-23
+    .filter("take", function ($filter) {
+        return function (data, skipCount, takeCount) {
+            var skippedData = $filter("skip")(data, skipCount);
+            return $filter("limitTo")(skippedData, takeCount);
+        }
+    })
