@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Directives: Listing15-4</title>
+    <script src="../js/angular.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+</head>
+<body ng-controller="defaultCtrl">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Products</h3>
+    </div>
+    <div class="panel-body">
+        <div unordered-list="products"></div>
+    </div>
+</div>
+
+<script>
+    angular.module("exampleApp", [])
+            .directive("unorderedList", function () {
+                return function(scope, element, attrs) {
+                    var data = scope[attrs["unorderedList"]];
+                    if (angular.isArray(data)) {
+                        for(var i =0; i < data.length; i++) {
+                            console.log("Item: " + data[i].name);
+                        }
+                    }
+                }
+            })
+            .controller("defaultCtrl", ["$scope", function ($scope) {
+                $scope.products = [
+                    {name: "Apples", category: "Fruit", price: 1.20, expiry: 10},
+                    {name: "Bananas", category: "Fruit", price: 2.42, expiry: 7},
+                    {name: "Pears", category: "Fruit", price: 2.02, expiry: 6}
+                ];
+            }]);
+</script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+</html>
