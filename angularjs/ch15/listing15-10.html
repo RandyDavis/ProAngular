@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Directives: Listing15-10</title>
+    <script src="../js/angular.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+</head>
+<body ng-controller="defaultCtrl">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Products</h3>
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-primary" ng-click="incrementPrices()">
+            Change Prices
+        </button>
+    </div>
+    <div class="panel-body">
+        <div unordered-list="products" list-property="price | currency"></div>
+    </div>
+</div>
+
+<script>
+    angular.module("exampleApp", [])
+            .directive("unorderedList", function () {
+                return function(scope, element, attrs) {
+                    var data = scope[attrs["unorderedList"]];
+                    var propertyExpression = attrs["listProperty"];
+
+                    if (angular.isArray(data)) {
+                        var listElem = angular.element("<ul>");
+                        element.append(listElem);
+                        for(var i = 0; i < data.length; i++) {
+                            var itemElement = angular.element('<li>');
+                            listElem.append(itemElement);
+                            var watcherFn = function (watchScope) {
+                                return watchScope.$eval(propertyExpression, data[i]);
+                            }
+                            scope.$watch(watcherFn, function (newValue, oldValue) {
+                                itemElement.text(newValue);
+                            });
+                        }
+                    }
+                }
+            })
+            .controller("defaultCtrl", ["$scope", function ($scope) {
+                $scope.products = [
+                    {name: "Apples", category: "Fruit", price: 1.20, expiry: 10},
+                    {name: "Bananas", category: "Fruit", price: 2.42, expiry: 7},
+                    {name: "Pears", category: "Fruit", price: 2.02, expiry: 6}
+                ];
+
+                $scope.incrementPrices = function () {
+                    for (var i = 0; i < $scope.products.length; i++) {
+                        $scope.products[i].price++;
+                    }
+                }
+            }]);
+</script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+</html>
